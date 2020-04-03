@@ -89,7 +89,7 @@ def Check03_TmaxTminSwapped( DataDF, ReplacedValuesDF ):
     # add your code here
     # Count when Max Temp is less than Min Temp
     ReplacedValuesDF.loc['3. Swapped', ['Min Temp','Max Temp']] = (DataDF['Min Temp']>DataDF['Max Temp']).sum()
-    ReplacedValuesDF = ReplacedValuesDF.replace([np.NaN],'0.0')    
+    ReplacedValuesDF = ReplacedValuesDF.replace([np.NaN],0)    
   
     # Swap Max Temp and Min Temp when Max Temp is less than Min Temp
     DataDF.loc[DataDF['Min Temp']>DataDF['Max Temp'],['Min Temp','Max Temp']]= DataDF.loc[ DataDF['Min Temp']>DataDF['Max Temp'],['Max Temp','Min Temp']].values   
@@ -110,7 +110,7 @@ def Check04_TmaxTminRange( DataDF, ReplacedValuesDF ):
     # add your code here
     # Record the number of values replaced for each data type in the dataframe ReplacedValuesDF with the index "4. Range Fail
     ReplacedValuesDF.loc["4. Range Fail",['Min Temp','Max Temp']] = (DataDF['Max Temp']-DataDF['Min Temp']>25).sum() 
-    ReplacedValuesDF = ReplacedValuesDF.replace([np.NaN],'0.0')    
+    ReplacedValuesDF = ReplacedValuesDF.replace([np.NaN],0)    
     # Identify days with temperature range (Max Temp minus Min Temp) greater than 25°C.
     # When range is exceeded replace both Tmax and Tmin with NaN
     DataDF.loc[(DataDF['Max Temp']-DataDF['Min Temp']>25),['Max Temp','Min Temp']]=np.nan 
